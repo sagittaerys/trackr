@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "Trackr",
+    "slug": "trackr",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icons/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "scheme": "trackr",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#6366F1"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.trackr.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#6366F1"
+      },
+      "package": "com.trackr.app"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Trackr needs camera access for liveness verification"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
