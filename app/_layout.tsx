@@ -7,7 +7,7 @@ import { useTransactionStore } from '../stores/useTransactionStore'
 import { useBudgetStore } from '../stores/useBudgetStore'
 import { useRecurringStore } from '../stores/useRecurringStore'
 import { useRecurringScheduler } from '../hooks/useRecurringScheduler'
-
+import '../global.css'
 
 
 function RootLayoutInner() {
