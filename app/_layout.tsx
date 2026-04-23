@@ -7,8 +7,6 @@ import { useTransactionStore } from '../stores/useTransactionStore'
 import { useBudgetStore } from '../stores/useBudgetStore'
 import { useRecurringStore } from '../stores/useRecurringStore'
 import { useRecurringScheduler } from '../hooks/useRecurringScheduler'
-import '../global.css'
-
 
 function RootLayoutInner() {
   useRecurringScheduler()
@@ -20,24 +18,15 @@ function RootLayoutInner() {
       <Stack.Screen name="(tabs)" />
       <Stack.Screen
         name="modals/add-transaction"
-        options={{
-          presentation: 'modal',
-          animation: 'slide_from_bottom',
-        }}
+        options={{ presentation: 'modal' }}
       />
       <Stack.Screen
         name="modals/add-budget"
-        options={{
-          presentation: 'modal',
-          animation: 'slide_from_bottom',
-        }}
+        options={{ presentation: 'modal' }}
       />
       <Stack.Screen
         name="modals/add-recurring"
-        options={{
-          presentation: 'modal',
-          animation: 'slide_from_bottom',
-        }}
+        options={{ presentation: 'modal' }}
       />
     </Stack>
   )

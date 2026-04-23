@@ -2,10 +2,9 @@ import { View, ViewProps } from 'react-native'
 
 interface CardProps extends ViewProps {
   children: React.ReactNode
-  className?: string
 }
 
-export default function Card({ children, className = '', style, ...props }: CardProps) {
+export default function Card({ children, style, ...props }: CardProps) {
   return (
     <View
       style={[
