@@ -1,17 +1,19 @@
 import { View, Text } from 'react-native'
-import { CartesianChart, Bar } from 'victory-native'
 import { useFinancialSummary } from '../../hooks/useFinancialSummary'
 import { TrendingDown } from 'lucide-react-native'
 
 const DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
+const CHART_HEIGHT = 140
 
 export default function SpendingVelocityChart() {
   const { monthlyTrend } = useFinancialSummary()
 
   const data = DAYS.map((day, i) => ({
     day,
-    value: monthlyTrend[i]?.expense ?? Math.random() * 500 + 100,
+    value: monthlyTrend[i]?.expense ?? (Math.sin(i) + 1.5) * 200,
   }))
+
+  const maxVal = Math.max(...data.map((d) => d.value), 1)
 
   return (
     <View style={{
@@ -24,7 +26,7 @@ export default function SpendingVelocityChart() {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
-        marginBottom: 4,
+        marginBottom: 16,
       }}>
         <View>
           <Text style={{ fontSize: 17, fontWeight: '700', color: '#111827' }}>
@@ -50,35 +52,43 @@ export default function SpendingVelocityChart() {
         </View>
       </View>
 
-      <View style={{ height: 180, marginTop: 12 }}>
-        <CartesianChart
-          data={data}
-          xKey="day"
-          yKeys={['value']}
-          domainPadding={{ left: 10, right: 10 }}
-        >
-          {({ points, chartBounds }) => (
-            <Bar
-              points={points.value}
-              chartBounds={chartBounds}
-              color="#1B3FA0"
-              roundedCorners={{ topLeft: 6, topRight: 6 }}
-              animate={{ type: 'spring' }}
-            />
-          )}
-        </CartesianChart>
-      </View>
-
+      {/* Bar chart */}
       <View style={{
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+        height: CHART_HEIGHT,
+        gap: 6,
+      }}>
+        {data.map((d, i) => {
+          const barHeight = Math.max((d.value / maxVal) * CHART_HEIGHT, 8)
+          const isLast = i === data.length - 1
+          return (
+            <View
+              key={d.day}
+              style={{
+                flex: 1,
+                height: barHeight,
+                backgroundColor: isLast ? '#1B3FA0' : '#D1D9F0',
+                borderRadius: 6,
+              }}
+            />
+          )
+        })}
+      </View>
+
+      {/* X axis labels */}
+      <View style={{
+        flexDirection: 'row',
+        gap: 6,
         marginTop: 8,
       }}>
         {DAYS.map((d) => (
           <Text key={d} style={{
-            fontSize: 10,
+            flex: 1,
+            fontSize: 9,
             color: '#9CA3AF',
             fontWeight: '500',
+            textAlign: 'center',
           }}>
             {d}
           </Text>
