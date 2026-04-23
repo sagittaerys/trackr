@@ -3,7 +3,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Dimensions,
+  // Dimensions,
   Animated,
   ScrollView,
 } from 'react-native'
@@ -12,6 +12,7 @@ import { router } from 'expo-router'
 import { CameraView, useCameraPermissions } from 'expo-camera'
 import { useSettingsStore } from '../../stores/useSettingsStore'
 import {
+  Check,
   CheckCircle,
   Eye,
   Sun,
@@ -275,20 +276,24 @@ export default function LivenessScreen() {
               style={{
                 backgroundColor: '#FFFFFF',
                 borderRadius: 20,
-                padding: 20,
+                padding: 32,
                 marginVertical: 20,
               }}
             >
+             
               <Text
                 style={{
-                  fontSize: 16,
+                  fontSize: 20,
                   fontWeight: '700',
-                  color: '#1B3FA0',
+                  color: '#00327D',
                   marginBottom: 16,
+                  lineHeight: 28,
                 }}
               >
                 Verification Steps
               </Text>
+
+
               {STEPS.map((s, i) => (
                 <View
                   key={s.id}
@@ -304,13 +309,13 @@ export default function LivenessScreen() {
                       width: 32,
                       height: 32,
                       borderRadius: 16,
-                      backgroundColor: i === 0 ? '#1B3FA0' : i === 1 ? '#1B3FA0' : '#E5E7EB',
+                      backgroundColor: i === 0 ? '#00593C' : i === 1 ? '#0047AB' : '#E5E7EB',
                       alignItems: 'center',
                       justifyContent: 'center',
                     }}
                   >
                     {i === 0 ? (
-                      <CheckCircle size={16} color="#fff" />
+                      <Check size={16} color="#fff" />
                     ) : (
                       <Text
                         style={{
@@ -348,12 +353,13 @@ export default function LivenessScreen() {
               ))}
             </View>
 
-            {/* Tips */}
+
+            {/* tips */}
             <View
               style={{
                 backgroundColor: '#F8F9FF',
-                borderRadius: 16,
-                padding: 20,
+                borderRadius: 20,
+                padding: 32,
                 marginBottom: 16,
               }}
             >
@@ -365,17 +371,21 @@ export default function LivenessScreen() {
                   marginBottom: 12,
                 }}
               >
-                <Sun size={16} color="#F59E0B" />
+
+                <Sun size={22} color="#737784" />
+
+
                 <Text
                   style={{
-                    fontSize: 15,
+                    fontSize: 18,
                     fontWeight: '700',
-                    color: '#111827',
+                    color: '#00327D',
                   }}
                 >
                   Tips for Success
                 </Text>
               </View>
+
               {[
                 'Ensure your face is well-lit from the front.',
                 'Remove glasses or hats if verification fails.',
@@ -396,11 +406,11 @@ export default function LivenessScreen() {
                       height: 5,
                       borderRadius: 3,
                       backgroundColor: '#6B7280',
-                      marginTop: 7,
+                      marginTop: 9,
                     }}
                   />
                   <Text
-                    style={{ fontSize: 13, color: '#6B7280', flex: 1, lineHeight: 20 }}
+                    style={{ fontSize: 14, color: '#434653', flex: 1, lineHeight: 22 }}
                   >
                     {tip}
                   </Text>
@@ -408,49 +418,11 @@ export default function LivenessScreen() {
               ))}
             </View>
 
-            {/* Status indicators */}
-            <View style={{ gap: 8, marginBottom: 24 }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  gap: 8,
-                  borderLeftWidth: 3,
-                  borderLeftColor: '#10B981',
-                  paddingLeft: 12,
-                }}
-              >
-                <CheckCircle size={14} color="#10B981" />
-                <Text
-                  style={{ fontSize: 13, fontWeight: '600', color: '#10B981' }}
-                >
-                  Lighting conditions optimal
-                </Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  gap: 8,
-                  borderLeftWidth: 3,
-                  borderLeftColor: '#F59E0B',
-                  paddingLeft: 12,
-                }}
-              >
-                <AlertTriangle size={14} color="#F59E0B" />
-                <Text
-                  style={{ fontSize: 13, fontWeight: '600', color: '#F59E0B' }}
-                >
-                  Face partially obscured
-                </Text>
-              </View>
-            </View>
-
             {/* Buttons */}
             <TouchableOpacity
               onPress={handleStart}
               style={{
-                backgroundColor: '#1B3FA0',
+                backgroundColor: '#00327D',
                 borderRadius: 14,
                 paddingVertical: 18,
                 alignItems: 'center',
@@ -497,16 +469,16 @@ export default function LivenessScreen() {
         </ScrollView>
       </SafeAreaView>
     )
-  }
+    }
 
-  // Scanning screen
+  
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#F2F4F7' }}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 40 }}
       >
-        {/* Header */}
+        {/* header */}
         <View
           style={{
             flexDirection: 'row',
