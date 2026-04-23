@@ -108,6 +108,45 @@ export default function LivenessScreen() {
     outputRange: [0, 280],
   })
 
+//  for permission
+if (!permission) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#F2F4F7' }}>
+      <Text style={{ color: '#6B7280' }}>Loading camera...</Text>
+    </View>
+  )
+}
+
+if (!permission.granted) {
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F2F4F7', alignItems: 'center', justifyContent: 'center', padding: 32 }}>
+      <Eye size={48} color="#1B3FA0" />
+      <Text style={{ fontSize: 22, fontWeight: '700', color: '#111827', marginTop: 16, marginBottom: 8, textAlign: 'center' }}>
+        Camera Access Required
+      </Text>
+      <Text style={{ fontSize: 14, color: '#6B7280', textAlign: 'center', marginBottom: 32, lineHeight: 22 }}>
+        Trackr needs camera access to verify your identity before you can access your financial data.
+      </Text>
+      <TouchableOpacity
+        onPress={requestPermission}
+        style={{
+          backgroundColor: '#1B3FA0',
+          borderRadius: 14,
+          paddingVertical: 16,
+          paddingHorizontal: 32,
+          alignItems: 'center',
+          width: '100%',
+        }}
+        activeOpacity={0.8}
+      >
+        <Text style={{ color: '#FFFFFF', fontSize: 16, fontWeight: '700' }}>
+          Grant Camera Access
+        </Text>
+      </TouchableOpacity>
+    </SafeAreaView>
+  )
+}
+
   if (step === 'info') {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#F2F4F7' }}>

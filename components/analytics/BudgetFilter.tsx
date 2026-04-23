@@ -1,20 +1,19 @@
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
-import { TransactionType } from '../../types'
+import { View, Text, TouchableOpacity } from 'react-native'
 
-type FilterType = 'all' | TransactionType
+type FilterType = 'all' | 'below' | 'over'
 
-interface TransactionFilterProps {
+interface BudgetFilterProps {
   active: FilterType
   onChange: (f: FilterType) => void
 }
 
 const FILTERS: { key: FilterType; label: string }[] = [
   { key: 'all', label: 'All' },
-  { key: 'income', label: 'Income' },
-  { key: 'expense', label: 'Expense' },
+  { key: 'below', label: 'Below Limit' },
+  { key: 'over', label: 'Over Limit' },
 ]
 
-export default function TransactionFilter({ active, onChange }: TransactionFilterProps) {
+export default function BudgetFilter({ active, onChange }: BudgetFilterProps) {
   return (
     <View style={{
       flexDirection: 'row',
